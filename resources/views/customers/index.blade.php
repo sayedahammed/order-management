@@ -11,6 +11,7 @@
                     <thead>
                     <tr>
                         <th>Contact No</th>
+                        <th>Creation Date</th>
                         <th>Actions</th>
                     </tr>
                     </thead>
@@ -18,6 +19,7 @@
                     @foreach($customers as $customer)
                         <tr>
                             <td>{{ $customer->contact_no }}</td>
+                            <td>{{ \Carbon\Carbon::make($customer->created_at)->format("d-M-Y") }}</td>
                             <td>
                                 <form action="{{ route('customers.destroy', $customer->id) }}" method="POST">
                                     @csrf
