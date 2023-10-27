@@ -4,27 +4,27 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <a href="{{ route('home') }}" class="btn btn-secondary">Back</a>
+                <a href="{{ route('home') }}" class="btn btn-sm btn-secondary">Back</a>
                 <div class="card mt-2">
                     <div class="card-body">
-                        <h5 class="pb-2">Contact No: <b>{{ $contact_no }}</b></h5>
+                        <h6 class="pb-2">Contact No: <b>{{ $contact_no }}</b></h6>
                         <form class="row row-cols-lg-auto g-1 mb-2 align-items-center" method="post" action="{{ route('orders.store') }}">
                             @csrf
                             <div class="col-12">
                                 <label class="visually-hidden" for="order_no">Order No</label>
-                                <input type="number" class="form-control" required autofocus name="order_no" id="order_no" placeholder="Order No.">
+                                <input type="number" class="form-control form-control-sm" required autofocus name="order_no" id="order_no" placeholder="Order No.">
                                 <input type="hidden" name="contact_no" required value="{{ $contact_no }}">
                             </div>
                             <div class="col-12">
                                 <label class="visually-hidden" for="date">Date</label>
-                                <input type="date" class="form-control" required value="{{ \Carbon\Carbon::today()->format("Y-m-d") }}" name="date" id="date">
+                                <input type="date" class="form-control form-control-sm" required value="{{ \Carbon\Carbon::today()->format("Y-m-d") }}" name="date" id="date">
                             </div>
                             <div class="col-12">
-                                <button type="submit" class="btn btn-primary">Add Order</button>
+                                <button type="submit" class="btn btn-sm btn-primary">Add Order</button>
                             </div>
                         </form>
 
-                        <table class="table table-bordered table-striped">
+                        <table class="table table-bordered table-sm table-striped">
                             <thead>
                             <tr>
                                 <th>Order No</th>
@@ -41,7 +41,7 @@
                                         <form action="{{ route('orders.destroy', $order->id) }}" method="post">
                                             @csrf
                                             @method('DELETE')
-                                            <button class="btn btn-danger btn-sm" onclick="confirm('Are you sure?')">Delete</button>
+                                            <button class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</button>
                                         </form>
                                     </td>
                                 </tr>

@@ -13,12 +13,20 @@ class CustomerController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param Request $request
      * @return View
      */
-    public function index(): View
+    public function index(Request $request): View
     {
-        $customers = Customer::paginate();
-        return view('customers.index', compact('customers'));
+        $contact_no = null;
+
+        if (!empty($request->contact_no)) {
+            $contact_no = $request->contact_no;
+            $customers = Customer::where("contact_no", $contact_no)->latest()->paginate();
+        } else {
+            $customers = Customer::latest()->paginate();
+        }
+        return view('customers.index', compact('customers', 'contact_no'));
     }
 
     /**
